@@ -29,7 +29,7 @@ router.post('/', async (req, res)=>{
 router.delete('/:postId', async (req, res)=>{
     debugger
     try{
-        const removedList = await List.remove({_id: req.params.postId})
+        const removedList = await List.findByIdAndDelete({_id: req.params.postId})
         res.json(removedList)
     } catch(err){
         res.json({message: err})
