@@ -26,4 +26,13 @@ router.post('/', async (req, res)=>{
     }
 })
 
+router.delete('/:value', async (req, res)=>{
+    try{
+        const removedList = await List.remove({_id: req.params.value})
+        res.json(removedList)
+    } catch(err){
+        res.json({message: err})
+    }
+})
+
 module.exports = router
