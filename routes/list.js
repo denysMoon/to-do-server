@@ -37,10 +37,14 @@ router.delete('/:postId', async (req, res)=>{
 })
 
 router.put('/:postId', async (req, res)=>{
+    console.log(req.body.body)
     try{
         const updatedList = await List.findByIdAndUpdate(
-            {_id: req.params.postId},
-            {$set: {body: req.body.body} })
+            req.params.postId,
+            {$set: {
+                body: req.body.body
+            } },
+            {new: true})
         res.json(updatedList)
     } catch(err){
         res.json({message: err})
