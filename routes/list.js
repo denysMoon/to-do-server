@@ -36,9 +36,9 @@ router.delete('/:postId', async (req, res)=>{
     }
 })
 
-router.patch('/:postId', async (req, res)=>{
+router.put('/:postId', async (req, res)=>{
     try{
-        const updatedList = await List.updateOne(
+        const updatedList = await List.findByIdAndUpdate(
             {_id: req.params.postId},
             {$set: {body: req.body.body} })
         res.json(updatedList)
